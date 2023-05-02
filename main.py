@@ -26,6 +26,7 @@ flange=[(-0,-0.01),
 
 l1=Polyline(*flange)
 l2 =Line(l1@1,l1@0)
+
 sk23 = make_face(l1, l2)
 
 ex23 = revolve(sk23, Axis.Y)
