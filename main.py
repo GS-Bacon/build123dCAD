@@ -31,6 +31,7 @@ face = make_face(l1, line)
 ex23=Pos(0,0,outpole_lengh/2)*Cylinder(bearing_OR+warll_thin*2,outpole_lengh)
 
 
-ex23 -= revolve(face, Axis.Z)
 
+ex23 -= revolve(face, Axis.Z)
+ex23+=mirror(ex23,Plane.XY)
 show(ex23)
