@@ -49,7 +49,7 @@ pole_base=[(-20,0,0),
 l2=Pos(0,out_pole_OR+0.1,0)*Polygon(*pole_base)
 ex2+=extrude(l2,until=Until.NEXT,target=ex2)
 
-ex2=fillet(ex2.edges().group_by(Axis.Z)[-1],1)
+ex2=fillet(ex2.edges().group_by(Axis.Y)[-1].filter_by(Axis.Z),1)
 #ex2+=mirror(ex2,Plane.XZ)
 ex2+=mirror(ex2,Plane.XY)
 show(ex2)
