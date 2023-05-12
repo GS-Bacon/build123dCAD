@@ -5,8 +5,11 @@ set_port(3939)
 
 #プリント品基準の壁厚
 WALL_THIN=4
+#プリント品の色
 PRINT_COLLAR=(200,200,200)
+#ミスミ40x40 5シリーズ
 ALUMI_FRAME=40
+#プリント品のクリアランス
 CLEARANCE=0.1
 
 def pole():
@@ -63,13 +66,16 @@ def pole():
     ex2+=mirror(ex2,Plane.XZ)
     ex2+=mirror(ex2,Plane.XY)
     return ex2
+
+frame_length=60
 frame_stay_wall=Rectangle(ALUMI_FRAME+WALL_THIN,ALUMI_FRAME+WALL_THIN)
 frame_stay_wall-=offset(
     frame_stay_wall,
     -WALL_THIN-CLEARANCE,
     kind=Kind.INTERSECTION,
     )
-ex2=extrude(frame_stay_wall,60)
-
+ex2=extrude(frame_stay_wall,frame_length)
+hole_loc=Location(0,-(ALUMI_FRAME+WALL_THIN+CLEARANCE)/2,30)
+ex2-=hole_loc*Hole(10,10)
 show_object(ex2)
 #show_object(pole(),name="pole",options={"color": PRINT_COLLAR})
